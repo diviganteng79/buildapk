@@ -12,14 +12,22 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Set up JDK 8
+      # 🔹 JAVA 17 — KHUSUS UNTUK ANDROID SDK
+      - name: Set up JDK 17 (for Android SDK)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      # 🔹 JAVA 8 — KHUSUS UNTUK GRADLE 6.9
+      - name: Set up JDK 8 (for Gradle)
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 8
-
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
 
       - name: Grant execute permission
         run: chmod +x gradlew
